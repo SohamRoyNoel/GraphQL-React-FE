@@ -6,9 +6,13 @@ import singleSong from '../queries/aSongDetail';
 class SongDetail extends Component {
       render() {
             console.log(this.props);
+            if(this.props.data.loading) {
+                  return (<div>Loading...</div>)
+            }
             return (
-                  <div>
-                        <h3>SongDetail</h3>
+                  <div className="container">
+                        <Link to="/">Back</Link>
+                        <h3>Selected Music: { this.props.data.song.title }</h3>
                   </div>
             )
       }

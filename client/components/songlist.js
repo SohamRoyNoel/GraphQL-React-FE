@@ -17,14 +17,17 @@ class SongList extends Component {
       renderSongs(){
             return this.props.data.songs.map(({ id, title }) => {
                   return(
-                        <li key={id} className="collection-item">
-                              {title}
-                              <i 
-                                    className="material-icons right "
-                                    onClick={() => this.onDelete(id)}
-                                    style= {{ cursor:"pointer" }}
-                              >delete</i>
-                        </li>
+                        
+                              <li key={id} className="collection-item">
+                                    <Link to={`/song/${id}`}>
+                                          {title}
+                                    </Link>
+                                    <i 
+                                          className="material-icons right "
+                                          onClick={() => this.onDelete(id)}
+                                          style= {{ cursor:"pointer" }}
+                                    >delete</i>
+                              </li>
                   )
             })
       }
