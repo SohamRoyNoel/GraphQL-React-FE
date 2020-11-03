@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Link, hashHistory } from 'react-router';
 import singleSong from '../queries/aSongDetail';
+import LyricCreate from './LyricsCreate';
 
 class SongDetail extends Component {
       render() {
-            console.log(this.props);
+            // console.log(this.props);
             if(this.props.data.loading) {
                   return (<div>Loading...</div>)
             }
@@ -13,6 +14,8 @@ class SongDetail extends Component {
                   <div className="container">
                         <Link to="/">Back</Link>
                         <h3>Selected Music: { this.props.data.song.title }</h3>
+                        <br />
+                        <LyricCreate id={this.props.params.id}/>
                   </div>
             )
       }
