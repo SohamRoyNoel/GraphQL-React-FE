@@ -1,20 +1,28 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import addLyrics from '../queries/addLyrics';
+import likeLyrics from '../queries/likeLyrics';
 
 class LyricList extends Component {
 
+      onLike(id){
+            console.log("Hell : " + id);
+            this.props.mutate({
+                  variables: {id: id }
+            })
+      }
+
       renderSongs(){
-      return this.props.lyrics.map(({ id, content }) => {
+      return this.props.lyrics.map(({ id, content, likes }) => {
                   return(
                         
                               <li key={id} className="collection-item">
                                           {content}
                                     <i 
                                           className="material-icons right "
-                                          onClick={() => this.onDelete(id)}
+                                          onClick={() => this.onLike(id)}
                                           style= {{ cursor:"pointer" }}
                                     >thumb_up</i>
+                                    <div className="right">{likes}</div>
                               </li>
                   )
             })
@@ -31,4 +39,4 @@ class LyricList extends Component {
       }
 }
 
-export default LyricList;
+export default graphql(likeLyrics) (LyricList);

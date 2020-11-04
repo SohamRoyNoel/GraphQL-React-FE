@@ -11,7 +11,7 @@ class LyricCreate extends Component {
 
       onSubmit(event) {
             event.preventDefault();
-            console.log(this.props);
+            //console.log(this.props);
             //Embed the variable to mutation GQL query
             this.props.mutate ({
                   variables: {content: this.state.content, songId: this.props.id },
