@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { Link, hashHistory } from 'react-router';
 import addLyrics from '../queries/addLyrics';
 
 class LyricCreate extends Component {
@@ -16,7 +15,7 @@ class LyricCreate extends Component {
             //Embed the variable to mutation GQL query
             this.props.mutate ({
                   variables: {content: this.state.content, songId: this.props.id },
-                  //refetchQueries: [{ query: query, /*variables: <Vars that can be passed> */ }]
+                  //refetchQueries: [{ query: query, /*variables: <Vars that can be passed> */ }] :: this approach can be used to refresh the lyrics that is added now :: Solution : Caching with data field by ID
             }).then(
                   () => this.setState({ content: ' ' })
             );

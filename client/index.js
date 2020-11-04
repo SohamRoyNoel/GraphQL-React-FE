@@ -8,7 +8,13 @@ import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import SongCreate from './components/SongCreate';
 import SongDetail from './components/SongDetails';
 
-const client = new ApolloClient({})
+// Identify the element from the apollo store :: LyricsCreate.js like 18 solution
+// 1. Go and fetch every peace of data you need
+// 2. Look at every single record
+// 3. Use the ID field of the record to identify the data
+const client = new ApolloClient({
+    dataIdFromObject: o => o.id
+})
 
 const Root = () => {
   return (
