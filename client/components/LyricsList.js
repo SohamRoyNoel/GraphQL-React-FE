@@ -1,13 +1,22 @@
+import { optimistic } from 'apollo-client/optimistic-data/store';
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import likeLyrics from '../queries/likeLyrics';
 
 class LyricList extends Component {
 
-      onLike(id){
+      onLike(id, likes){
             console.log("Hell : " + id);
             this.props.mutate({
-                  variables: {id: id }
+                  variables: {id: id },
+                  optimisticResponse: {
+                        __typename: 'Mutation',
+                        likeLyric: {
+                              id: id,
+                              __typename: 'LyricType',
+                              likes: likes + 1
+                        }
+                  }
             })
       }
 
@@ -19,7 +28,7 @@ class LyricList extends Component {
                                           {content}
                                     <i 
                                           className="material-icons right "
-                                          onClick={() => this.onLike(id)}
+                                          onClick={() => this.onLike(id, likes)}
                                           style= {{ cursor:"pointer" }}
                                     >thumb_up</i>
                                     <div className="right">{likes}</div>
